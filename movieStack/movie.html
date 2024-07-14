@@ -24,7 +24,7 @@
                     <a href="./index.html" class="hover:text-gray-300 md:hover:text-gray-200 active:border-2 p-2 md:p-3 xl:p-4 rounded-xl text-base md:text-lg xl:text-xl">Home</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-gray-300 md:hover:text-gray-200 active:border-2 p-2 md:p-3 xl:p-4 rounded-xl text-base md:text-lg xl:text-xl shadow-2xl  ">Movies</a>
+                    <a href="#" class="border-2 border-gray-400 border-opacity-60 hover:text-gray-300 md:hover:text-gray-200 active:border-2 p-2 md:p-3 xl:p-4 rounded-xl text-base md:text-lg xl:text-xl shadow-2xl  ">Movies</a>
                   </li>
                   <li>
                     <a href="#" class="hover:text-gray-300 md:hover:text-gray-200 active:border-2 p-2 md:p-3 xl:p-4 rounded-xl text-base md:text-lg xl:text-xl">Favs</a>
@@ -34,14 +34,69 @@
             </div>
           </header>
 
-        <section class="w-screen flex items-center justify-center">
+        <!-- <section class="w-screen flex items-center justify-center">
             <div class="container mx-auto text-center">
                 <h1 class="text-6xl font-bold text-gray-500 uppercase tracking-widest mt-12 mb-12 text-center ">MOVIES</h1>
-               
+
+        </section> -->
+        <section class="w-full flex">
+          <div class="flex w-full justify-center">
+            
+            <img src="./assets/bannerMovies.png" alt="" class="w-full object-cover" />
+          </div>
         </section>
 
+        <!-- Agregamos el select y el search -->
+
+        <div class="flex flex-col md:flex-row w-auto">
+          <!-- Select -->
+          <div class="w-full md:w-1/2 mb-4 md:mb-0">
+            <label for="select" class="block text-sm font-medium text-gray-700">Generos:</label>
+            <div class="relative">
+              <select id="select" name="select" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                <option value="default">Todos</option>
+                <option value="horror">Terror</option>
+                <option value="mystery">Misterio</option>
+                <option value="thriller">Thriller</option>
+                <option value="action">Accion</option>
+                <option value="drama">Drama</option>
+                <option value="crime">Crimen</option>
+                <option value="fantasy">Fantasia</option>
+                <option value="comedy">Comedia</option>
+                <option value="adventure">Aventura</option>
+                <option value="animation">Animacion</option>
+                <option value="family">Familiar</option>
+                <option value="romance">Romantica</option>
+                <option value="science fiction">Ciencia Ficcion</option>
+                <option value="history">Historia</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path
+                    d="M9.293 11.293a1 1 0 0 0 1.414-1.414l-3-3a1 1 0 0 0-1.414 1.414L8.586 10l-2.293 2.293a1 1 0 0 0 1.414 1.414l3-3z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        
+          <!-- Search -->
+          <div class="w-full md:w-1/2">
+            <label for="search" class="block text-sm font-medium text-gray-700">Buscar:</label>
+            <div class="relative">
+              <input id="search" type="text" placeholder="Buscar..."
+                     class="block w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path
+                    d="M9.293 11.293a1 1 0 0 0 1.414-1.414l-3-3a1 1 0 0 0-1.414 1.414L8.586 10l-2.293 2.293a1 1 0 0 0 1.414 1.414l3-3z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <main id="contenedor" class="flex flex-wrap justify-center gap-2">
-           
+
 
         </main>
 
@@ -55,4 +110,3 @@
     <script src="./index.js"></script>
 </body>
 </html>
-
