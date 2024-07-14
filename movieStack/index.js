@@ -1,19 +1,19 @@
 let contenedor = document.getElementById("contenedor");
 console.log(contenedor);
 
-function estructuraCard(image, title, tagline, overview) {
+function estructuraCard(movie) {
   return `<div>
             <div class="flex flex-wrap flex-row w-80 h-auto bg-white rounded-lg shadow-lg overflow-hidden gap-3">
                 <!-- Card Image -->
-                <img class="w-full h-48 object-cover" src="${image}" alt="Card Image">
+                <img class="w-full h-48 object-cover" src="${movie.image}" alt="Card Image">
                 
                 <!-- Card Content -->
                 <div class="p-4 text-center">
                     <div class="flex justify-center items-center">
-                        <h2 class="text-xl font-bold w-full text-gray-800 mb-2 justify-center">${title}</h2>
-                        <span class="text-sm text-gray-500">${tagline}</span>
+                        <h2 class="text-xl font-bold w-full text-gray-800 mb-2 justify-center">${movie.title}</h2>
+                        <span class="text-sm text-gray-500">${movie.tagline}</span>
                     </div>
-                    <p class="text-gray-700 mb-4 text-overflow: ellipsis">${overview}</p>
+                    <p class="text-gray-700 mb-4 text-overflow: ellipsis">${movie.overview}</p>
                   
             </div>
 
@@ -26,18 +26,14 @@ function estructuraCard(image, title, tagline, overview) {
 }
 console.log(estructuraCard);
 
-function imprimirCard(listaMovies) {
+function imprimirCardHtml(listaMovies) {
   let cards = "";
   for (const movie of listaMovies) {
-    cards += estructuraCard(
-      movie.image,
-      movie.title,
-      movie.tagline,
-      movie.overview
+    cards += estructuraCard(movie
     );
   }
-  return cards;
+  contenedor.innerHTML = cards;
 }
-console.log(imprimirCard(movies));
+console.log(imprimirCardHtml(movies));
 
-contenedor.innerHTML = imprimirCard(movies);
+imprimirCardHtml (movies);
