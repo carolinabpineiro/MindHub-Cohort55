@@ -45,9 +45,6 @@ function imprimirCardHtml(listaMovies) {
 imprimirCardHtml (movies);
 
 
-//sprint 2
-// Función para filtrar por género
-let selector = document.getElementById('select')
 
 
 /*function filtrarPorGenero(array, generoBuscado) {
@@ -55,26 +52,32 @@ let selector = document.getElementById('select')
 }*/
 
 //-------------------------------------------------FILTRO POR GENERO
+//sprint 2
+// Función para filtrar por género
+/*let selector = document.getElementById('select')
+
+
 // Función para manejar el evento de cambio en el selector
 let callbackEventoSeleccionar = (evento) => {
   let genero = evento.target.value; // Obtener el valor seleccionado
   let arrayGeneroFiltrado = filtrarGenero(movies, genero); // Filtrar películas por género
-  imprimirCardHtml(arrayGeneroFiltrado); // Imprimir las tarjetas HTML
+  let peliculasFiltradas = filtrarPorBusqueda(selector.value, arrayGeneroFiltrado);
+  imprimirCardHtml(peliculasFiltradas); // Imprimir las tarjetas HTML
 }
 
 // Agregar el evento de cambio al selector
 selector.addEventListener('change', callbackEventoSeleccionar);
 
 // Función para filtrar películas por género
-function filtrarGenero(movies, generoSeleccionado) {
+function filtrarGenero(array, generoSeleccionado) {
   let genero = generoSeleccionado.toLowerCase(); // Convertir a minúsculas
 
   if (genero === "default") {
     // Si se selecciona "default", devolver todas las películas
-    return movies;
+    return array;
   }
   
-  let generoFiltrado = movies.filter(movie => {
+  let generoFiltrado = array.filter(movie => {
     // Verificar si algún género en el array de la película incluye el género seleccionado
     return movie.genres.some(g => g.toLowerCase() === genero);
   });
@@ -88,26 +91,85 @@ function filtrarGenero(movies, generoSeleccionado) {
 // Obtener el elemento de entrada de búsqueda
 const inputBusqueda = document.getElementById('search');
 
-// Agregar un listener para el evento input
-inputBusqueda.addEventListener('input', () => {
-  // Obtener el valor actual del campo de búsqueda
+
+let callbackEventoBuscar = (evento) => {
   let busqueda = inputBusqueda.value.trim().toLowerCase();
-  
   // Filtrar las películas basadas en la búsqueda
   let peliculasFiltradas = filtrarPorBusqueda(movies, busqueda);
-  
-  // Imprimir las tarjetas HTML de las películas filtradas
-  imprimirCardHtml(peliculasFiltradas);
-});
+   // Imprimir las tarjetas HTML de las películas filtradas
+   let arrayGeneroFiltrado = filtrarGenero(inputBusqueda.value, peliculasFiltradas);
+
+  imprimirCardHtml(arrayGeneroFiltrado);
+};
+
+inputBusqueda.addEventListener('input', callbackEventoBuscar)
+ 
 
 // Función para filtrar películas por búsqueda
-function filtrarPorBusqueda(movies, busqueda) {
+function filtrarPorBusqueda(array, busqueda) {
   if (!busqueda) {
-    return movies; // Si la búsqueda está vacía, mostrar todas las películas
+    return array; // Si la búsqueda está vacía, mostrar todas las películas
   }
 
   // Filtrar películas por título o cualquier otro criterio que desees
-  return movies.filter(movie =>
+  return array.filter(movie =>
     movie.title.toLowerCase().includes(busqueda) // Filtrar por título (ajustar según tus necesidades)
   );
+}*/
+
+
+let selector = document.getElementById('select');
+const inputBusqueda = document.getElementById('search');
+
+// Función para manejar el evento de cambio en el selector
+let callbackEventoSeleccionar = (evento) => {
+  let genero = evento.target.value; // Obtener el valor seleccionado
+  let arrayGeneroFiltrado = filtrarGenero(movies, genero); // Filtrar películas por género
+  let busqueda = inputBusqueda.value.trim().toLowerCase(); // Obtener la búsqueda actual
+  let peliculasFiltradas = filtrarPorBusqueda(arrayGeneroFiltrado, busqueda); // Filtrar por búsqueda
+  imprimirCardHtml(peliculasFiltradas); // Imprimir las tarjetas HTML
+};
+
+// Función para manejar el evento de búsqueda
+let callbackEventoBuscar = (evento) => {
+  let busqueda = inputBusqueda.value.trim().toLowerCase(); // Obtener la búsqueda actual
+  let genero = selector.value; // Obtener el género seleccionado
+  let arrayGeneroFiltrado = filtrarGenero(movies, genero); // Filtrar películas por género
+  let peliculasFiltradas = filtrarPorBusqueda(arrayGeneroFiltrado, busqueda); // Filtrar por búsqueda
+  imprimirCardHtml(peliculasFiltradas); // Imprimir las tarjetas HTML
+};
+
+// Agregar eventos a los elementos
+selector.addEventListener('change', callbackEventoSeleccionar);
+inputBusqueda.addEventListener('input', callbackEventoBuscar);
+
+// Función para filtrar películas por género
+function filtrarGenero(array, generoSeleccionado) {
+  let genero = generoSeleccionado.toLowerCase(); // Convertir a minúsculas
+
+  if (genero === "default") {
+    // Si se selecciona "default", devolver todas las películas
+    return array;
+  }
+  
+  let generoFiltrado = array.filter(movie => {
+    // Verificar si algún género en el array de la película incluye el género seleccionado
+    return movie.genres.some(g => g.toLowerCase() === genero);
+  });
+
+  return generoFiltrado;
 }
+
+// Función para filtrar películas por búsqueda
+function filtrarPorBusqueda(array, busqueda) {
+  if (!busqueda) {
+    return array; // Si la búsqueda está vacía, mostrar todas las películas
+  }
+
+  // Filtrar películas por título (ajustar según tus necesidades)
+  return array.filter(movie =>
+    movie.title.toLowerCase().includes(busqueda)
+  );
+}
+
+
