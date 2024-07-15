@@ -7,7 +7,7 @@ function estructuraCard(movie) {
   // Función para recortar el texto y añadir puntos suspensivos si es necesario
   function recortarTexto(texto, longitudMaxima) {
     if (texto.length > longitudMaxima) {
-      return texto.substring(0, longitudMaxima - 3) + '...';
+      return texto.substring(0, longitudMaxima - 3) + "...";
     } else {
       return texto;
     }
@@ -34,34 +34,29 @@ function estructuraCard(movie) {
                     </div>
                   
                     <!-- Botón -->
-                    <a href="./details.html" class="bg-rose-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded inline-block mt-2">ver +</a>
+                    <a id="identificadorId" href="./details.html" class="bg-rose-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded inline-block mt-2">ver +</a>
                 </div>
             </div>
         </div>`;
 }
 
-
 console.log(estructuraCard);
-
 
 //Creamos una funcion para que imprima las cards con todas las peliculas que se encuentran en el data.js
 function imprimirCardHtml(listaMovies) {
   let cards = "";
   for (const movie of listaMovies) {
-    cards += estructuraCard(movie
-    );
+    cards += estructuraCard(movie);
   }
   contenedor.innerHTML = cards;
 }
 
-
-imprimirCardHtml (movies);
-
+imprimirCardHtml(movies);
 
 //sprint 2
 
-let selector = document.getElementById('select');
-const inputBusqueda = document.getElementById('search');
+let selector = document.getElementById("select");
+const inputBusqueda = document.getElementById("search");
 
 // Función para manejar el evento de cambio en el selector
 let callbackEventoSeleccionar = (evento) => {
@@ -82,8 +77,8 @@ let callbackEventoBuscar = (evento) => {
 };
 
 // Agregar eventos a los elementos
-selector.addEventListener('change', callbackEventoSeleccionar);
-inputBusqueda.addEventListener('input', callbackEventoBuscar);
+selector.addEventListener("change", callbackEventoSeleccionar);
+inputBusqueda.addEventListener("input", callbackEventoBuscar);
 
 // Función para filtrar películas por género
 function filtrarGenero(array, generoSeleccionado) {
@@ -93,10 +88,10 @@ function filtrarGenero(array, generoSeleccionado) {
     // Si se selecciona "default", devolver todas las películas
     return array;
   }
-  
-  let generoFiltrado = array.filter(movie => {
+
+  let generoFiltrado = array.filter((movie) => {
     // Verificar si algún género en el array de la película incluye el género seleccionado
-    return movie.genres.some(g => g.toLowerCase() === genero);
+    return movie.genres.some((g) => g.toLowerCase() === genero);
   });
 
   return generoFiltrado;
@@ -109,9 +104,5 @@ function filtrarPorBusqueda(array, busqueda) {
   }
 
   // Filtrar películas por título (ajustar según tus necesidades)
-  return array.filter(movie =>
-    movie.title.toLowerCase().includes(busqueda)
-  );
+  return array.filter((movie) => movie.title.toLowerCase().includes(busqueda));
 }
-
-
