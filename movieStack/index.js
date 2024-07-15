@@ -35,7 +35,7 @@ function estructuraCard(movie) {
                     </div>
                   
                     <!-- Botón -->
-                    <a id="verMas" href="./details.html" class="bg-rose-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded inline-block mt-2">ver +</a>
+                    <a href="./details.html?id=${movie.id}" class="bg-rose-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded inline-block mt-2">ver +</a>
                 </div>
             </div>
         </div>`;
@@ -107,9 +107,4 @@ function filtrarPorBusqueda(array, busqueda) {
   // Filtrar películas por título (ajustar según tus necesidades)
   return array.filter((movie) => movie.title.toLowerCase().includes(busqueda));
 }
-
-//------------------------------Details
-const urlParams = new URLSearchParams(window.location.search);
-const id = urlParams.get('id');
-console.log('El valor del parámetro id es:', id);
 

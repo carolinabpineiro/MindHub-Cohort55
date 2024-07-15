@@ -1,53 +1,79 @@
 
-  /*console.log(id);
+const verMas = document.getElementById('verMas');
+let detailsMovie = window.location.search;
+let urlParams = new URLSearchParams(detailsMovie);
 
-  function obtenerPeliculaPorId(id) {
-    
-    return movies.find(movie => movie.id === id);
-  }
+console.log(urlParams)
+console.log(detailsMovie)
 
-  function mostrarDetalles(movie) {
-    // Aquí puedes construir y mostrar el detalle de la película en el DOM
-    const detallePelicula = document.getElementById('detalleMovie');
-    if (movie) {
-      detallePelicula.innerHTML = `
-        <h2>${movie.title}</h2>
-        <p><strong>Tagline:</strong> ${movie.tagline}</p>
-        <p><strong>Genero/s:</strong> ${movie.genres}</p>
-        <!-- Agrega más detalles según sea necesario -->
-      `;
-    } else {
-      detallePelicula.innerHTML = '<p>No se encontró la película.</p>';
-    }
-  }*/
+if(urlParams.has('id')){
+  let movie = movies.find((movie) => movie.id == urlParams.get('id'))
+console.log(movie);
+verMas.innerHTML =`
+<div class="container mx-auto p-4 bg-white rounded-lg shadow-lg">
+    <div class="flex justify-between mb-4">
+      <h1 class="text-3xl font-bold text-gray-800">${movie.title}</h1>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      <div class="flex flex-row w-full md:w-2/3">
+        <div class="flex flex-row space-y-4">
+          <img src="${movie.image}" alt="Imagen de la película" class="w-full h-80 object-cover rounded-lg mb-4">
 
+          <div>
+            
+            <p class="text-gray-600 mb-2"><span claass="font-bold">Frase clave:</span> ${movie.tagline}</p>
+            <p class="text-gray-700 mb-4">${movie.genres}</p>
+            <p class="text-gray-700 mb-4">${movie.overview}</p>
+            <ul class="text-gray-700">
+            </ul>
+          </div>
+        </div>
+      </div>
 
-// Esperar a que el DOM esté completamente cargado
-document.addEventListener('DOMContentLoaded', function() {
-    // Escuchar cambios en el selector de películas
-    let detallePeliculas = document.getElementById('verMas');
-    detallePeliculas.addEventListener('change', function() {
-      // Obtener el valor seleccionado (que sería el id)
-      const id = detallePeliculas.value;
-      console.log('Seleccionaste la película con id:', id);
-      
-      // Aquí puedes llamar a una función para cargar detalles basados en el id seleccionado
-      cargarDetalles(id);
-    });
-  });
-  
-  function cargarDetalles(id) {
-    // Aquí puedes implementar la lógica para cargar detalles de la película con el id proporcionado
-    console.log('Cargando detalles para la película con id:', id);
-    // Ejemplo ficticio de solicitud AJAX
-    /*
-    fetch(`https://api.example.com/peliculas/${id}`)
-      .then(response => response.json())
-      .then(data => {
-        console.log('Detalles cargados:', data);
-        // Aquí puedes actualizar la interfaz de usuario con los detalles cargados
-      })
-      .catch(error => console.error('Error al cargar detalles:', error));
-    */
-  }
-  
+      <!-- Filas 1 y 2 (tablas) -->
+      <div class="w-full flex flex-row md:w-1/3">
+        <div class="mb-4">
+          <h3 class="text-lg font-bold text-gray-800 mb-2">Tabla 1</h3>
+          <table class="w-full border-collapse border border-gray-200">
+            <tbody class="text-gray-700">
+              <tr>
+                <td class="border border-gray-200 p-2">Fila 1, Columna 1</td>
+                <td class="border border-gray-200 p-2">Fila 1, Columna 2</td>
+              </tr>
+              <tr>
+                <td class="border border-gray-200 p-2">Fila 2, Columna 1</td>
+                <td class="border border-gray-200 p-2">Fila 2, Columna 2</td>
+              </tr>
+              <tr>
+                <td class="border border-gray-200 p-2">Fila 3, Columna 1</td>
+                <td class="border border-gray-200 p-2">Fila 3, Columna 2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">Tabla 2</h3>
+          <table class="w-full border-collapse border border-gray-200">
+            <tbody class="text-gray-700">
+              <tr>
+                <td class="border border-gray-200 p-2">Fila 1, Columna 1</td>
+                <td class="border border-gray-200 p-2">Fila 1, Columna 2</td>
+              </tr>
+              <tr>
+                <td class="border border-gray-200 p-2">Fila 2, Columna 1</td>
+                <td class="border border-gray-200 p-2">Fila 2, Columna 2</td>
+              </tr>
+              <tr>
+                <td class="border border-gray-200 p-2">Fila 3, Columna 1</td>
+                <td class="border border-gray-200 p-2">Fila 3, Columna 2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+`
+}
+
