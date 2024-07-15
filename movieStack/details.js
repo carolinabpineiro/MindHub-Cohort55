@@ -1,22 +1,25 @@
-
-const verMas = document.getElementById('verMas');
+const verMas = document.getElementById("verMas");
 let detailsMovie = window.location.search;
 let urlParams = new URLSearchParams(detailsMovie);
 
-console.log(urlParams)
-console.log(detailsMovie)
+console.log(urlParams);
+console.log(detailsMovie);
 
-if(urlParams.has('id')){
-  let movie = movies.find((movie) => movie.id == urlParams.get('id'))
-console.log(movie);
-verMas.innerHTML =`
+if (urlParams.has("id")) {
+  let movie = movies.find((movie) => movie.id == urlParams.get("id"));
+  console.log(movie);
+  verMas.innerHTML = `
 <div class="container mx-auto p-8 bg-white rounded-lg shadow-lg flex flex-col items-center">
     <div class="mb-4 text-center">
-        <h1 class="text-3xl font-bold text-rose-700 mb-4 hover:scale-105 transition-transform duration-300">${movie.title}</h1>
+        <h1 class="text-3xl font-bold text-rose-700 mb-4 hover:scale-105 transition-transform duration-300">${
+          movie.title
+        }</h1>
     </div>
     <div class="flex flex-wrap gap-4 w-full">
         <div class="w-full md:w-2/3 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 items-center">
-            <img src="${movie.image}" alt="Imagen de la película" class="w-full h-auto object-cover rounded-lg mb-4 md:w-1/2 hover:scale-105 transition-transform duration-300">
+            <img src="${
+              movie.image
+            }" alt="Imagen de la película" class="w-full h-auto object-cover rounded-lg mb-4 md:w-1/2 hover:scale-105 transition-transform duration-300">
 
 
             <div class="flex-1 text-center md:text-left">
@@ -35,19 +38,27 @@ verMas.innerHTML =`
                     <tbody class="text-gray-700">
                         <tr>
                             <td class="border border-gray-200 p-2 font-bold">Lenguaje original</td>
-                            <td class="border border-gray-200 p-2">${movie.original_language}</td>
+                            <td class="border border-gray-200 p-2">${
+                              movie.original_language
+                            }</td>
                         </tr>
                         <tr>
                             <td class="border border-gray-200 p-2 font-bold">Fecha de estreno</td>
-                            <td class="border border-gray-200 p-2">${movie.release_date}</td>
+                            <td class="border border-gray-200 p-2">${
+                              movie.release_date
+                            }</td>
                         </tr>
                         <tr>
                             <td class="border border-gray-200 p-2 font-bold">Duración</td>
-                            <td class="border border-gray-200 p-2">${movie.runtime} min</td>
+                            <td class="border border-gray-200 p-2">${
+                              movie.runtime
+                            } min</td>
                         </tr>
                         <tr>
                             <td class="border border-gray-200 p-2 font-bold">Estado</td>
-                            <td class="border border-gray-200 p-2">${movie.status}</td>
+                            <td class="border border-gray-200 p-2">${
+                              movie.status
+                            }</td>
                         </tr>
                     </tbody>
                 </table>
@@ -58,15 +69,21 @@ verMas.innerHTML =`
                     <tbody class="text-gray-700">
                         <tr>
                             <td class="border border-gray-200 p-2 font-bold">Votos</td>
-                            <td class="border border-gray-200 p-2">${movie.vote_average}</td>
+                            <td class="border border-gray-200 p-2">${
+                              movie.vote_average
+                            }</td>
                         </tr>
                         <tr>
                             <td class="border border-gray-200 p-2 font-bold">Presupuesto</td>
-                            <td class="border border-gray-200 p-2">${movie.budget}</td>
+                            <td class="border border-gray-200 p-2">${
+                              movie.budget
+                            }</td>
                         </tr>
                         <tr>
                             <td class="border border-gray-200 p-2 font-bold">Ingresos generados</td>
-                            <td class="border border-gray-200 p-2">${movie.revenue}</td>
+                            <td class="border border-gray-200 p-2">${
+                              movie.revenue
+                            }</td>
                         </tr>
                     </tbody>
                 </table>
@@ -76,6 +93,5 @@ verMas.innerHTML =`
 </div>
 
 
-`
+`;
 }
-
