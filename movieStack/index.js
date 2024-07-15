@@ -1,6 +1,7 @@
 //Capturamos a traves de su ID el div contenedor
-let contenedor = document.getElementById("contenedor");
+const contenedor = document.getElementById("contenedor");
 console.log(contenedor);
+
 
 //Creamos una funcion con la estructura card para representar las peliculas
 function estructuraCard(movie) {
@@ -34,7 +35,7 @@ function estructuraCard(movie) {
                     </div>
                   
                     <!-- Botón -->
-                    <a id="identificadorId" href="./details.html" class="bg-rose-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded inline-block mt-2">ver +</a>
+                    <a id="verMas" href="./details.html" class="bg-rose-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded inline-block mt-2">ver +</a>
                 </div>
             </div>
         </div>`;
@@ -106,3 +107,9 @@ function filtrarPorBusqueda(array, busqueda) {
   // Filtrar películas por título (ajustar según tus necesidades)
   return array.filter((movie) => movie.title.toLowerCase().includes(busqueda));
 }
+
+//------------------------------Details
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get('id');
+console.log('El valor del parámetro id es:', id);
+
