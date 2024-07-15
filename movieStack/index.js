@@ -5,22 +5,7 @@ console.log(contenedor);
 
 //Creamos una funcion con la estructura card para representar las peliculas
 function estructuraCard(movie) {
-  // Función para recortar el texto y añadir puntos suspensivos si es necesario
-  function recortarTexto(texto, longitudMaxima) {
-    if (texto.length > longitudMaxima) {
-      return texto.substring(0, longitudMaxima - 3) + "...";
-    } else {
-      return texto;
-    }
-  }
 
-  // Ajustar la longitud máxima del texto de overview
-  const maxLongitudOverview = 120; // Puedes ajustar este valor según tus necesidades
-
-  // Recortar el texto de overview si es necesario
-  const overviewRecortado = recortarTexto(movie.overview, maxLongitudOverview);
-
-  // Estructura de la tarjeta con Tailwind CSS
   return `<div class="gap-4 mt-4">
             <div class="flex flex-wrap flex-row w-80 height-150 bg-white rounded-lg shadow-lg overflow-hidden gap-3">
                 <!-- Card Image -->
@@ -31,7 +16,7 @@ function estructuraCard(movie) {
                     <div>
                         <h2 class="text-l font-bold text-gray-800 mb-2">${movie.title}</h2>
                         <span class="text-sm text-gray-500">${movie.tagline}</span>
-                        <p class="text-gray-700 mt-2 line-clamp-3">${overviewRecortado}</p>
+                        <p class="text-gray-700 mt-2 line-clamp-3 overflow-hidden overflow-ellipsis">${movie.overview}</p>
                     </div>
                   
                     <!-- Botón -->
