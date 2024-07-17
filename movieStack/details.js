@@ -1,15 +1,26 @@
-const verMas = document.getElementById("verMas");
-let detailsMovie = window.location.search;
-let urlParams = new URLSearchParams(detailsMovie);
+// Realizar la solicitud a la API
+fetch('https://moviestack.onrender.com/api/movies', {
+    method: "GET",
+    headers: {
+        'x-api-key': API_KEY,
+    },
+})
+.then(response => response.json())
+.then((data) => {
+  dataMovies = data.movies; // Asignar los datos a la variable global
+  dataMovies.forEach((movie) => {
+      movie.image = `https://moviestack.onrender.com/static/${movie.image}`;
+  });
+    // Lógica para encontrar la película por su ID desde los parámetros de la URL
+    let urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has("id")) {
+        let movieId = urlParams.get("id");
+        let movie = dataMovies.find(movie => movie.id == movieId);
 
-console.log(urlParams);
-console.log(detailsMovie);
-
-if (urlParams.has("id")) {
-  let movie = movies.find((movie) => movie.id == urlParams.get("id"));
-  console.log(movie);
-  verMas.innerHTML = `
-<div class="container mx-auto p-8 bg-white rounded-lg shadow-lg flex flex-col items-center">
+        if (movie) {
+            // Actualizar el contenido de verMas con los detalles de la película
+            verMas.innerHTML = `
+           <div class="container mx-auto p-8 bg-white rounded-lg shadow-lg flex flex-col items-center">
     <div class="mb-4 text-center">
         <h1 class="text-3xl font-bold text-rose-700 mb-4 hover:scale-105 transition-transform duration-300">${
           movie.title
@@ -92,6 +103,18 @@ if (urlParams.has("id")) {
     </div>
 </div>
 
-
 `;
-}
+
+        } else {
+            console.error("No se encontró ninguna película con el ID:", movieId);
+        }
+    } else {
+        console.error("No se proporcionó ningún ID de película en la URL.");
+    }
+})
+.catch(error => {
+    console.error("Hubo un error:", error);
+})
+.finally(() => {
+    console.log("Finally is here");
+});

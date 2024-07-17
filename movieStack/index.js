@@ -1,65 +1,78 @@
-//Capturamos a traves de su ID el div contenedor
 const contenedor = document.getElementById("contenedor");
-console.log(contenedor);
+const API_KEY = "0ff70d54-dc0b-4262-9c3d-776cb0f34dbd";
+let dataMovies; // Variable global para almacenar las películas
 
+fetch('https://moviestack.onrender.com/api/movies', {
+    method: "GET",
+    headers: {
+        'x-api-key': API_KEY,
+    },
+})
+.then((response) => response.json())
+.then((data) => {
+    dataMovies = data.movies; // Asignar los datos a la variable global
+    dataMovies.forEach((movie) => {
+        movie.image = `https://moviestack.onrender.com/static/${movie.image}`;
+    });
+    imprimirCardHtml(dataMovies);
+})
+.catch(error => {
+    console.error("Hubo un error:", error);
+})
+.finally(() => {
+    console.log("Finally is here");
+});
 
-//Creamos una funcion con la estructura card para representar las peliculas
+// Función para estructurar la tarjeta de película
 function estructuraCard(movie) {
-
-  return `<div class="gap-4 mt-4">
-            <div class="flex flex-wrap flex-row w-80 height-150 bg-white rounded-lg shadow-lg overflow-hidden gap-3">
-                <!-- Card Image -->
-                <img class="w-full h-48 object-cover" src="${movie.image}" alt="Card Image">
-                
-                <!-- Card Content -->
-                <div class="p-4 text-center flex flex-col justify-between">
-                    <div>
-                        <h2 class="text-l font-bold text-gray-800 mb-2">${movie.title}</h2>
-                        <span class="text-sm text-gray-500">${movie.tagline}</span>
-                        <p class="text-gray-700 mt-2 line-clamp-3 overflow-hidden overflow-ellipsis">${movie.overview}</p>
-                    </div>
-                  
-                    <!-- Botón -->
-                    <a href="./details.html?id=${movie.id}" class="bg-rose-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded inline-block mt-2">ver +</a>
+    return `<div class="gap-4 mt-4">
+        <div class="relative flex flex-wrap w-80 bg-white rounded-lg shadow-lg overflow-hidden gap-3">
+            <button id="corazon" class="corazon-btn absolute top-2 right-2 text-white-500 text-2xl outline-none" onclick="this.classList.toggle('text-red-500'); this.innerHTML = this.innerHTML === '&#10084;' ? '&#129293;' : '&#10084;'">&#129293;</button>
+            <img class="w-full h-48 object-cover" src="${movie.image}" alt="Card Image">
+            <div class="p-4 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-lg font-bold text-gray-800 mb-2">${movie.title}</h2>
+                    <span class="text-sm text-gray-500">${movie.tagline}</span>
+                    <p class="text-gray-700 mt-2 line-clamp-3 overflow-hidden overflow-ellipsis">${movie.overview}</p>
                 </div>
+                <a href="./details.html?id=${movie.id}" class="bg-rose-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded mt-2 text-center">Ver +</a>
             </div>
-        </div>`;
+        </div>
+    </div>`;
 }
 
-console.log(estructuraCard);
-
-//Creamos una funcion para que imprima las cards con todas las peliculas que se encuentran en el data.js
+// Función para imprimir las tarjetas HTML de las películas
 function imprimirCardHtml(listaMovies) {
-  let cards = "";
-  for (const movie of listaMovies) {
-    cards += estructuraCard(movie);
-  }
-  contenedor.innerHTML = cards;
+    let cards = "";
+    listaMovies.forEach(movie => {
+        cards += estructuraCard(movie);
+    });
+    contenedor.innerHTML = cards;
 }
-
-imprimirCardHtml(movies);
-
-//sprint 2
 
 let selector = document.getElementById("select");
 const inputBusqueda = document.getElementById("search");
 
 // Función para manejar el evento de cambio en el selector
 let callbackEventoSeleccionar = (evento) => {
-  let genero = evento.target.value; // Obtener el valor seleccionado
-  let arrayGeneroFiltrado = filtrarGenero(movies, genero); // Filtrar películas por género
-  let busqueda = inputBusqueda.value.trim().toLowerCase(); // Obtener la búsqueda actual
-  let peliculasFiltradas = filtrarPorBusqueda(arrayGeneroFiltrado, busqueda); // Filtrar por búsqueda
-  imprimirCardHtml(peliculasFiltradas); // Imprimir las tarjetas HTML
+    let genero = evento.target.value; // Obtener el valor seleccionado
+    if (dataMovies) {
+        let arrayGeneroFiltrado = filtrarGenero(dataMovies, genero); // Filtrar películas por género
+        let busqueda = inputBusqueda.value.trim().toLowerCase(); // Obtener la búsqueda actual
+        let peliculasFiltradas = filtrarPorBusqueda(arrayGeneroFiltrado, busqueda); // Filtrar por búsqueda
+        imprimirCardHtml(peliculasFiltradas); // Imprimir las tarjetas HTML
+    }
 };
 
 // Función para manejar el evento de búsqueda
 let callbackEventoBuscar = (evento) => {
-  let busqueda = inputBusqueda.value.trim().toLowerCase(); // Obtener la búsqueda actual
-  let genero = selector.value; // Obtener el género seleccionado
-  let arrayGeneroFiltrado = filtrarGenero(movies, genero); // Filtrar películas por género
-  let peliculasFiltradas = filtrarPorBusqueda(arrayGeneroFiltrado, busqueda); // Filtrar por búsqueda
-  imprimirCardHtml(peliculasFiltradas); // Imprimir las tarjetas HTML
+    let busqueda = inputBusqueda.value.trim().toLowerCase(); // Obtener la búsqueda actual
+    if (dataMovies) {
+        let genero = selector.value; // Obtener el género seleccionado
+        let arrayGeneroFiltrado = filtrarGenero(dataMovies, genero); // Filtrar películas por género
+        let peliculasFiltradas = filtrarPorBusqueda(arrayGeneroFiltrado, busqueda); // Filtrar por búsqueda
+        imprimirCardHtml(peliculasFiltradas); // Imprimir las tarjetas HTML
+    }
 };
 
 // Agregar eventos a los elementos
@@ -68,28 +81,24 @@ inputBusqueda.addEventListener("input", callbackEventoBuscar);
 
 // Función para filtrar películas por género
 function filtrarGenero(array, generoSeleccionado) {
-  let genero = generoSeleccionado.toLowerCase(); // Convertir a minúsculas
+    let genero = generoSeleccionado.toLowerCase(); // Convertir a minúsculas
 
-  if (genero === "default") {
-    // Si se selecciona "default", devolver todas las películas
-    return array;
-  }
+    if (genero === "default") {
+        return array; // Si se selecciona "default", devolver todas las películas
+    }
 
-  let generoFiltrado = array.filter((movie) => {
-    // Verificar si algún género en el array de la película incluye el género seleccionado
-    return movie.genres.some((g) => g.toLowerCase() === genero);
-  });
+    let generoFiltrado = array.filter((movie) => {
+        return movie.genres.some((g) => g.toLowerCase() === genero);
+    });
 
-  return generoFiltrado;
+    return generoFiltrado;
 }
 
 // Función para filtrar películas por búsqueda
 function filtrarPorBusqueda(array, busqueda) {
-  if (!busqueda) {
-    return array; // Si la búsqueda está vacía, mostrar todas las películas
-  }
+    if (!busqueda) {
+        return array; // Si la búsqueda está vacía, mostrar todas las películas
+    }
 
-  // Filtrar películas por título (ajustar según tus necesidades)
-  return array.filter((movie) => movie.title.toLowerCase().includes(busqueda));
+    return array.filter((movie) => movie.title.toLowerCase().includes(busqueda));
 }
-
