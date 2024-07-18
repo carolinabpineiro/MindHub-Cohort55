@@ -29,16 +29,28 @@
                 <a href="./movie.html" class="hover:text-gray-300 md:hover:text-gray-200 active:border-2 p-2 md:p-3 xl:p-4 rounded-xl text-base md:text-lg xl:text-xl">Movies</a>
               </li>
               <li>
-                <a href="./favorites.html" class="hover:text-gray-300 md:hover:text-gray-200 active:border-2 p-2 md:p-3 xl:p-4 rounded-xl text-base md:text-lg xl:text-xl">Favs</a>
+                <a href="#" class="border-2 border-gray-400 border-opacity-60 hover:text-gray-300 md:hover:text-gray-200 active:border-2 p-2 md:p-3 xl:p-4 rounded-xl text-base md:text-lg xl:text-xl shadow-2x">Favs</a>
               </li>
             </ul>
           </nav>
         </div>
       </header>
 
+      <section class="w-full flex">
+        <div class="flex w-full justify-center">
+          
+          <img src=" " alt="" class="w-full object-cover" </img>
+        </div>
+      </section>
       <main>
-        <div id="verMas"></div>
-
+  <section>
+    <h2 class="w-full text-center ">Favourites Movies</h2>
+    <div id="movies-favs" class="flex flex-col md:flex-row pb-2 md:flex-wrap gap-x-4 gap-y-2 justify-center mt-4 bg-gray-300">
+        <button data-reset="reset" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+            Reset</button>
+    </div>
+                
+  </section>
       </main>
 
     <footer class="bg-gray-800 text-white py-4">
@@ -48,8 +60,8 @@
         </div>
       </footer>
     </div>
-    <script src="./data.js"></script>
     <script src="./index.js"></script>
     <script src="./details.js"></script>
+    <script src="./favorites.js"></script>
   </body>
 </html>

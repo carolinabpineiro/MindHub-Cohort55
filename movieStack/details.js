@@ -34,11 +34,11 @@ fetch('https://moviestack.onrender.com/api/movies', {
 
 
             <div class="flex-1 text-center md:text-left">
-                <h3 class="text-lg font-bold text-gray-800 mb-2">Descripción:</h3>
+                <h3 class="text-lg font-bold text-gray-800 mb-2">Tagline:</h3>
                 <p class="text-gray-600 mb-4">${movie.tagline}</p>
-                <h3 class="text-lg font-bold text-gray-800 mb-2">Géneros:</h3>
+                <h3 class="text-lg font-bold text-gray-800 mb-2">Genres:</h3>
                 <p class="text-gray-700 mb-4">${movie.genres.join(", ")}</p>
-                <h3 class="text-lg font-bold text-gray-800 mb-2">Resumen:</h3>
+                <h3 class="text-lg font-bold text-gray-800 mb-2">Overview:</h3>
                 <p class="text-gray-700 mb-4">${movie.overview}</p>
             </div>
         </div>
@@ -48,25 +48,25 @@ fetch('https://moviestack.onrender.com/api/movies', {
                 <table class="w-full border-collapse border border-gray-200">
                     <tbody class="text-gray-700">
                         <tr>
-                            <td class="border border-gray-200 p-2 font-bold">Lenguaje original</td>
+                            <td class="border border-gray-200 p-2 font-bold">Original Languaje</td>
                             <td class="border border-gray-200 p-2">${
                               movie.original_language
                             }</td>
                         </tr>
                         <tr>
-                            <td class="border border-gray-200 p-2 font-bold">Fecha de estreno</td>
+                            <td class="border border-gray-200 p-2 font-bold">Release Date</td>
                             <td class="border border-gray-200 p-2">${
                               movie.release_date
                             }</td>
                         </tr>
                         <tr>
-                            <td class="border border-gray-200 p-2 font-bold">Duración</td>
+                            <td class="border border-gray-200 p-2 font-bold">Runtime</td>
                             <td class="border border-gray-200 p-2">${
                               movie.runtime
                             } min</td>
                         </tr>
                         <tr>
-                            <td class="border border-gray-200 p-2 font-bold">Estado</td>
+                            <td class="border border-gray-200 p-2 font-bold">Status</td>
                             <td class="border border-gray-200 p-2">${
                               movie.status
                             }</td>
@@ -82,18 +82,18 @@ fetch('https://moviestack.onrender.com/api/movies', {
                             <td class="border border-gray-200 p-2 font-bold">Votos</td>
                             <td class="border border-gray-200 p-2">${
                               movie.vote_average
-                            }</td>
+                            }%</td>
                         </tr>
                         <tr>
                             <td class="border border-gray-200 p-2 font-bold">Presupuesto</td>
-                            <td class="border border-gray-200 p-2">${
-                              movie.budget
+                            <td class="border border-gray-200 p-2">USD ${
+                              movie.budget.toLocaleString('es-ES')
                             }</td>
                         </tr>
                         <tr>
                             <td class="border border-gray-200 p-2 font-bold">Ingresos generados</td>
-                            <td class="border border-gray-200 p-2">${
-                              movie.revenue
+                            <td class="border border-gray-200 p-2">USD ${
+                              movie.revenue.toLocaleString('es-ES')
                             }</td>
                         </tr>
                     </tbody>
