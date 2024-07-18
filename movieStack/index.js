@@ -38,7 +38,7 @@ function cargarPeliculas() {
 function estructuraCard(movie) {
     return `<div class="gap-4 mt-4">
         <div class="relative flex flex-wrap w-80 bg-white rounded-lg shadow-lg overflow-hidden gap-3">
-            <button data-fav="si" data-id="${movie.id}" class="corazon-btn absolute top-2 right-2 text-2xl text-white outline-none" onclick="toggleFavorito('${movie.id}')">
+            <button data-fav="si" data-id="${movie.id}" class="corazon-btn absolute top-2 right-2 text-3xl font-bold text-white outline-none" onclick="toggleFavorito('${movie.id}')">
                 <span id="corazon-icon-${movie.id}" class="heart-icon ${movie.favorito ? 'text-red-500' : 'text-white'}">&#9825;</span>
             </button>
             <img class="w-full h-48 object-cover" src="${movie.image}" alt="Card Image">
@@ -89,6 +89,8 @@ function filtrarPeliculas(array, generoSeleccionado, busqueda) {
         return cumpleGenero && cumpleBusqueda;
     });
 }
+
+
 
 // Función para verificar si una película es favorita
 const esFavorita = (idMovie) => {
