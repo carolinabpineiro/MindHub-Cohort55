@@ -1,6 +1,8 @@
+// index.js
+
 const contenedor = document.getElementById("contenedor");
 const API_KEY = "0ff70d54-dc0b-4262-9c3d-776cb0f34dbd";
-let dataMovies; // Variable global para almacenar las películas
+let dataMovies = []; // Variable global para almacenar las películas
 
 // Función para inicializar la carga de películas desde la API
 function cargarPeliculas() {
@@ -10,12 +12,17 @@ function cargarPeliculas() {
             "x-api-key": API_KEY,
         },
     })
-    .then((response) => response.json())
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('Error al cargar las películas');
+        }
+        return response.json();
+    })
     .then((data) => {
         dataMovies = data.movies; // Asignar los datos a la variable global
         dataMovies.forEach((movie) => {
             movie.image = `https://moviestack.onrender.com/static/${movie.image}`;
-            movie.favorito = false; // Agregar propiedad favorito inicialmente como false
+            movie.favorito = esFavorita(movie.id); // Agregar propiedad favorito inicialmente como false
         });
         imprimirCardHtml(dataMovies);
     })
@@ -83,6 +90,12 @@ function filtrarPeliculas(array, generoSeleccionado, busqueda) {
     });
 }
 
+// Función para verificar si una película es favorita
+const esFavorita = (idMovie) => {
+    const favoritas = JSON.parse(localStorage.getItem('favoritas')) || [];
+    return favoritas.some(movie => movie.id === idMovie);
+};
+
 // Función para marcar una película como favorita
 function toggleFavorito(idMovie) {
     console.log("ID de película recibido:", idMovie);
@@ -116,5 +129,3 @@ function toggleFavorito(idMovie) {
 
 // Inicializar la carga de películas al cargar la página
 document.addEventListener('DOMContentLoaded', cargarPeliculas);
-
-
