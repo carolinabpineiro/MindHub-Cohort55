@@ -90,7 +90,42 @@ function filtrarPeliculas(array, generoSeleccionado, busqueda) {
     });
 }
 
+// Obtener el select
+const select = document.getElementById('select');
 
+// Datos de géneros (simulación de datos)
+const generos = [
+  { value: 'default', text: 'All' },
+  { value: 'horror', text: 'Horror' },
+  { value: 'mystery', text: 'Mystery' },
+  { value: 'thriller', text: 'Thriller' },
+  { value: 'action', text: 'Action' },
+  { value: 'drama', text: 'Drama' },
+  { value: 'crime', text: 'Crime' },
+  { value: 'fantasy', text: 'Fantasy' },
+  { value: 'comedy', text: 'Comedy' },
+  { value: 'adventure', text: 'Adventure' },
+  { value: 'animation', text: 'Animation' },
+  { value: 'family', text: 'Family' },
+  { value: 'romance', text: 'Romance' },
+  { value: 'science fiction', text: 'Science Fiction' },
+  { value: 'history', text: 'History' }
+];
+
+// Función para crear opciones
+function crearOpciones(options) {
+  return options.map(option => {
+    const { value, text } = option;
+    const optionEl = document.createElement('option');
+    optionEl.value = value;
+    optionEl.textContent = text;
+    return optionEl;
+  });
+}
+
+// Generar las opciones y agregarlas al select
+const opcionesGeneradas = crearOpciones(generos);
+opcionesGeneradas.forEach(opcion => select.appendChild(opcion));
 
 // Función para verificar si una película es favorita
 const esFavorita = (idMovie) => {
