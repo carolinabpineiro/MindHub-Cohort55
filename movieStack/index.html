@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movies Stack</title>
+    <link rel="icon" href="./assets/Moviestack_isotipo.png" type="image/x-icon">
+
+
     <!-- CDN de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
@@ -20,13 +23,13 @@
           <nav>
             <ul class="flex space-x-4 md:space-x-12">
               <li>
-                <a href="#" class="hover:text-gray-300 md:hover:text-gray-200 active:border-2 p-2 md:p-3 xl:p-4 rounded-xl text-base md:text-lg xl:text-xl shadow-2xl">Home</a>
+                <a href="#" class="border-2 border-gray-400 border-opacity-60 hover:text-gray-300 md:hover:text-gray-200 active:border-2 p-2 md:p-3 xl:p-4 rounded-xl text-base md:text-lg xl:text-xl shadow-2xl">Home</a>
               </li>
               <li>
                 <a href="./movie.html" class="hover:text-gray-300 md:hover:text-gray-200 active:border-2 p-2 md:p-3 xl:p-4 rounded-xl text-base md:text-lg xl:text-xl">Movies</a>
               </li>
               <li>
-                <a href="#" class="hover:text-gray-300 md:hover:text-gray-200 active:border-2 p-2 md:p-3 xl:p-4 rounded-xl text-base md:text-lg xl:text-xl">Favs</a>
+                <a href="./favorites.html" class="hover:text-gray-300 md:hover:text-gray-200 active:border-2 p-2 md:p-3 xl:p-4 rounded-xl text-base md:text-lg xl:text-xl">Favs</a>
               </li>
             </ul>
           </nav>
@@ -36,7 +39,7 @@
       <section class="w-full flex">
         <div class="flex w-full justify-center">
           
-          <img src="./assets/banner7.jpg" alt="" class="w-auto object-cover" </img>
+          <img src="./assets/homeBanner.png" alt="" class="w-full object-cover" </img>
         </div>
       </section>
       <main>
@@ -44,24 +47,13 @@
         <section class="bg-rose-200 py-8">
           <div class="container mx-auto px-4">
             <h2 class="font-bold text-4xl mb-4">
-              Bienvenidos a MovieStack: Tu Refugio Cinematográfico Favorito
+              Welcome to MovieStack, your favorite cinematic haven!
+
             </h2>
             <p class="text-lg text-gray-700 leading-relaxed">
-              ¡Bienvenidos a MovieStack, tu refugio cinematográfico favorito! En
-              MovieStack celebramos el arte del cine en todas sus formas.
-              Nuestra misión es conectarte con las películas que amas y aquellas
-              que aún no sabes que vas a amar. Desde clásicos inolvidables hasta
-              las mejores gemas del cine independiente, pasando por animación
-              para todas las edades y documentales inspiradores, nuestra
-              colección tiene algo para todos. Con funciones interactivas como
-              reseñas, calificaciones y listas personalizadas, puedes compartir
-              tus opiniones y descubrir nuevas películas basadas en tus gustos.
-              Únete a nuestra vibrante comunidad de cinéfilos, participa en
-              discusiones apasionantes y mantente al día con las últimas
-              novedades del cine. En MovieStack, cada película tiene una
-              historia y cada espectador una voz. ¡Prepara tus palomitas y
-              comienza tu aventura cinematográfica con nosotros! ¡Nos vemos en
-              las reseñas!
+              At MovieStack, we celebrate the art of film in all its forms. Our mission is to connect you with the movies you love and those you don't yet know you'll love. From unforgettable classics to the best indie gems, and from animation for all ages to inspiring documentaries, our collection has something for everyone.
+              With interactive features like reviews, ratings, and personalized lists, you can share your opinions and discover new films based on your tastes. Join our vibrant community of film enthusiasts, engage in exciting discussions, and stay updated with the latest in cinema news.
+              At MovieStack, every movie has a story, and every viewer has a voice. So, grab your popcorn and start your cinematic adventure with us! See you in the reviews!
               
             </p>
           </div>
@@ -91,7 +83,7 @@
           </div>
         </section>
       </main>
-      
+
     <footer class="bg-gray-800 text-white py-4">
         <div class="container mx-auto text-center">
           &copy; MINDHUB 2024 - COHORT 55 - Carolina Pineiro. Todos los derechos
@@ -99,5 +91,8 @@
         </div>
       </footer>
     </div>
+    <script src="./index.js"></script>
+    <script src="./details.js"></script>
+    <script src="./favorites.js"></script>
   </body>
 </html>
